@@ -1,26 +1,26 @@
 DROP TABLE IF EXISTS `Lines`
 CREATE TABLE `Lines` (
-    `line_id` INT PRIMARY KEY AUTO_INCREMENT,
-    `line_name` VARCHAR(255)
+    `line_id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `line_name` VARCHAR(255) NOT NULL
 );
 
 DROP TABLE IF EXISTS `Stations`;
 CREATE TABLE `Stations` (
-    `station_id` INT PRIMARY KEY AUTO_INCREMENT,
-    `city_name` VARCHAR(255),
-    `station_name` VARCHAR(255),
+    `station_id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `city_name` VARCHAR(255) NOT NULL,
+    `station_name` VARCHAR(255) NOT NULL,
     `line_id` INT,
     FOREIGN KEY (`line_id`) REFERENCES `Lines`(`line_id`)
 );
 
 DROP TABLE IF EXISTS `Connections`;
 CREATE TABLE `Connections` (
-    `connection_id` INT PRIMARY KEY AUTO_INCREMENT,
+    `connection_id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     `station_id_1` INT,
     `station_id_2` INT,
-    `distance` DECIMAL(10, 2),
-    `travel_time` INT,
-    `connection_type` VARCHAR(255),
+    `distance` DECIMAL(10, 2) NOT NULL,
+    `travel_time` INT NOT NULL,
+    `connection_type` VARCHAR(255) NOT NULL,
     FOREIGN KEY (`station_id_1`) REFERENCES `Stations`(`station_id`),
     FOREIGN KEY (`station_id_2`) REFERENCES `Stations`(`station_id`)
 );
